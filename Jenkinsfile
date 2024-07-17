@@ -1,14 +1,22 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
     agent { 
-         node {
-            label 'onde-alpine' // specify the label of the node
-        }
+        label 'agent1'
     }
     stages {
         stage('build') {
             steps {
-                sh 'node --version'
+                echo "Building..."
+            }
+        }
+        stage('test') {
+            steps {
+                echo "Testing..."
+            }
+        }
+        stage('Deliver') {
+            steps {
+                echo "Delivering..."
             }
         }
     }
