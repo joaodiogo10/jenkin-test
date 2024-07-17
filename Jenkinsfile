@@ -1,7 +1,7 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
     agent { 
-        label 'agent1'
+        label 'agent-nodejs'
     }
     stages {
         stage('build') {
