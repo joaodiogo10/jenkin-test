@@ -1,6 +1,10 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { docker { image 'node:22.4-alpine3.19' } }
+    agent { 
+         node {
+            label 'onde-alpine' // specify the label of the node
+        }
+    }
     stages {
         stage('build') {
             steps {
