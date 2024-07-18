@@ -13,13 +13,14 @@ pipeline {
                     filename 'Dockerfile' 
                     additionalBuildArgs '--progress=plain --no-cache --target test'
                 }
-
-                steps
-                {
-                    echo "Built and tested successfully"
-                    sh 'node --version'
-                }
             }
+
+            steps
+            {
+                echo "Built and tested successfully"
+                sh 'node --version'
+            }
+            
         }
         stage('Deliver') {
             steps 
