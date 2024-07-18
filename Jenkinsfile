@@ -1,16 +1,22 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent
+    agent any
+    
+    stages 
     {
-        dockerfile {
-            filename 'Dockerfile_agent'
-        }
-    }
-    stages {
-        stage('build and test') {
-            steps {
-                echo "Building..."
-                sh 'docker build --target build -t test .'
+        stage('build and test') 
+        {
+            agent
+            {
+                dockerfile 
+                { 
+                    filename 'Dockerfile' 
+                    additionalBuildArgs '--progress=plain --no-cache --target test'
+                }
+
+                {
+                    sh 'node --version'
+                }
             }
         }
         stage('Deliver') {
