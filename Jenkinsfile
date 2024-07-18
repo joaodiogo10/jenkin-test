@@ -1,18 +1,13 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { 
-        //label 'agent-nodejs'
-        dockerfile true
+    dockerfile {
+        filename 'Dockerfile.build'
     }
     stages {
-        stage('build') {
+        stage('build and test') {
             steps {
                 echo "Building..."
-            }
-        }
-        stage('test') {
-            steps {
-                echo "Testing..."
+                sh 'docker build --target build -t test .'
             }
         }
         stage('Deliver') {
