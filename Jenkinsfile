@@ -1,7 +1,10 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    dockerfile {
-        filename 'Dockerfile.build'
+    agent
+    {
+        dockerfile {
+            filename 'Dockerfile.build'
+        }
     }
     stages {
         stage('build and test') {
