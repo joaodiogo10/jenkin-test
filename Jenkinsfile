@@ -1,6 +1,6 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent any
+    agent { label "agent1" }
     
     stages 
     {
