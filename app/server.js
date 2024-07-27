@@ -41,9 +41,13 @@ app.use((req, res) => {
 });
 
 // Start the server and listen on the specified port
-app.listen(port, () => {
+var server = app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });
 
+app.closeServer = () => {
+  server.close();
+};
 
 module.exports = app;
+
