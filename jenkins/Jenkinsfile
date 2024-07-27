@@ -26,6 +26,10 @@ pipeline {
             steps 
             {
                 echo "Delivering..."
+                // docker.withRegistry('https://hub.docker.com/repository/docker/joaodiogohf1/jenkins-agent-docker/general', 'docker-id') {
+                //     container.push("${shortCommit}")
+                //     container.push('latest')
+                // }
             }
         }
     }

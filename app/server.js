@@ -1,13 +1,8 @@
-// Import the express module
 const express = require('express');
-
-// Create an instance of express
 const app = express();
 
-// Define the port
 const port = 3000;
 
-// Root endpoint
 app.get('/', (req, res) => {
   res.json({
     message: 'Hello, World!',
@@ -15,25 +10,30 @@ app.get('/', (req, res) => {
   });
 });
 
-// /data1 endpoint
-app.get('/data1', (req, res) => {
-  res.json({
-    data: 'This is data from /data1 endpoint',
-    id: 1,
-    timestamp: new Date(),
-  });
+app.get('/data', (req, res) => {
+  const { id } = req.query;
+
+  const dataMap = {
+    1: {
+      data: 'This is data from /data1 endpoint',
+      id: 1,
+      timestamp: new Date(),
+    },
+    2: {
+      data: 'This is data from /data2 endpoint',
+      id: 2,
+      timestamp: new Date(),
+    },
+  };
+  const responseData = dataMap[id];
+
+  if (responseData) {
+    res.json(responseData);
+  } else {
+    res.status(400).json({ error: 'Invalid id parameter' });
+  }
 });
 
-// /data2 endpoint
-app.get('/data2', (req, res) => {
-  res.json({
-    data: 'This is data from /data2 endpoint',
-    id: 2,
-    timestamp: new Date(),
-  });
-});
-
-// Handle 404 - Not Found
 app.use((req, res) => {
   res.status(404).json({
     message: 'Not Found',
@@ -44,3 +44,6 @@ app.use((req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });
+
+
+module.exports = app;
